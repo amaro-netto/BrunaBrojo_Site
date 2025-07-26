@@ -32,8 +32,45 @@ body {
     background-color: var(--current-bg-color); /* Usamos a variável para a cor de fundo */
     transition: background-color 0.8s ease-in-out; /* Transição suave para a cor de fundo */
     overflow: hidden; /* Para evitar barras de rolagem desnecessárias */
-    position: relative; /* Necessário para posicionar elementos flutuantes */
+    position: relative; /* Necessário para posicionar elementos flutuantes e o chocolate-bg */
 }
+
+/* NOVO: Estilo para o contêiner da imagem de fundo da calda de chocolate */
+.chocolate-bg {
+    position: absolute;
+    top: 0;
+    left: 0; /* Começa do lado esquerdo */
+    height: 100vh; /* Ocupa a altura total da viewport */
+    width: 60vw; /* Ajuste a largura conforme sua imagem e design */
+    overflow: hidden; /* Garante que a imagem não "vaze" do contêiner */
+    pointer-events: none; /* Permite que cliques passem através */
+    z-index: 1; /* Fica abaixo do conteúdo principal, mas acima do body base */
+    opacity: 0; /* Inicia invisível */
+    transform: translateX(-50%); /* Inicia a animação fora da tela à esquerda */
+    animation: fadeInSlideChocolate 1.5s ease-out forwards; /* Animação de entrada */
+    animation-delay: 0.2s; /* Pequeno atraso para iniciar após o carregamento */
+}
+
+.chocolate-bg img {
+    height: 100%; /* A imagem preenche a altura do contêiner */
+    width: auto; /* A largura se ajusta proporcionalmente */
+    object-fit: cover; /* Garante que a imagem cubra a área, cortando se necessário */
+    object-position: left center; /* Alinha a imagem à esquerda */
+    /* Remove a transformação inicial daqui, pois o contêiner já lida com isso */
+}
+
+/* NOVO KEYFRAME para a calda de chocolate */
+@keyframes fadeInSlideChocolate {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%); /* Começa 50% fora da tela à esquerda */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Termina na posição 0, totalmente visível */
+    }
+}
+
 
 .header {
     display: flex;
@@ -89,6 +126,7 @@ body {
     padding: 0 50px;
     position: relative;
     overflow: hidden; /* Garante que a imagem do smoothie não vaze */
+    z-index: 2; /* Garante que o main-content esteja acima do chocolate-bg */
 }
 
 .text-content {
@@ -237,7 +275,7 @@ body {
     animation-timing-function: ease-out; /* Suaviza o final da animação */
 }
 
-/* NOVO KEYFRAME: A fruta aparece, se posiciona e fica estática */
+/* KEYFRAME para as frutas que aparecem e ficam estáticas */
 @keyframes appearFromBottomRightAndPosition {
     0% {
         opacity: 0;
@@ -289,6 +327,14 @@ body {
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
+    }
+
+    /* Ajuste para o chocolate-bg em telas menores */
+    .chocolate-bg {
+        width: 100vw; /* Ocupa a largura total */
+        object-fit: cover; /* Garante que cubra a área */
+        object-position: center bottom; /* Ajusta o posicionamento da calda */
+        height: 50vh; /* Ajuste a altura para telas menores */
     }
 }
 
@@ -349,5 +395,8 @@ body {
     .thumbnail {
         width: 70px;
         height: 70px;
+    }
+    .chocolate-bg {
+        height: 40vh; /* Ainda mais baixo em telas muito pequenas */
     }
 }

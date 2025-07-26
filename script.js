@@ -26,7 +26,7 @@ const floatingFruitImages = {
     ],
     cherry: [
         'https://images.unsplash.com/photo-1548486981-d9a2a7f8b9e1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Imagem de cereja
-        'https://images.unsplash.com/photo-1601633513360-153c301389e0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'   // Outra imagem de cereja
+        'https://images.unsplash.com/photo-1601633513360-153c301389e0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG0by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'   // Outra imagem de cereja
     ],
     banana_slice: [ // Adicionando fatia de banana para o smoothie de banana
         'https://images.unsplash.com/photo-1571771019793-18967962453e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Fatias de banana
