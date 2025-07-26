@@ -1,0 +1,353 @@
+/* Importação de fonte do Google Fonts (opcional, mas recomendado para um bom design) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    /* Variáveis CSS para as cores dos smoothies */
+    --color-strawberry: #f7a072; /* Cor mais para o laranja/pêssego */
+    --color-banana: #fcd757; /* Amarelo da banana */
+    --color-kiwi: #a4cc86;   /* Verde do kiwi */
+    --color-berries: #f26f6f;  /* Vermelho das frutas vermelhas */
+    --current-bg-color: var(--color-strawberry); /* Cor de fundo inicial */
+
+    /* Variáveis para as posições de animação dos elementos flutuantes */
+    --start-x: 0;
+    --start-y: 0;
+    --mid-x: 0; /* Nova variável para ponto intermediário */
+    --mid-y: 0; /* Nova variável para ponto intermediário */
+    --end-x: 0;
+    --end-y: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--current-bg-color); /* Usamos a variável para a cor de fundo */
+    transition: background-color 0.8s ease-in-out; /* Transição suave para a cor de fundo */
+    overflow: hidden; /* Para evitar barras de rolagem desnecessárias */
+    position: relative; /* Necessário para posicionar elementos flutuantes */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    color: #fff;
+    width: 100%;
+    z-index: 10; /* Garante que o cabeçalho fique acima de outros elementos */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo h1 {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-menu ul li a:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.main-content {
+    flex-grow: 1; /* Faz com que o conteúdo principal ocupe o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    position: relative;
+    overflow: hidden; /* Garante que a imagem do smoothie não vaze */
+}
+
+.text-content {
+    color: #fff;
+    text-align: left;
+    max-width: 45%;
+    z-index: 2; /* Garante que o texto fique acima da imagem de fundo */
+    transform: translateX(-50px); /* Ajuste de posição inicial */
+    opacity: 0; /* Começa invisível */
+    animation: fadeInSlide 1s forwards ease-out; /* Animação de entrada */
+    animation-delay: 0.5s;
+}
+
+.text-content h2 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.text-content h3 {
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #fff;
+    color: var(--current-bg-color); /* A cor do texto do botão muda com o fundo */
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+.image-container {
+    position: absolute;
+    right: 50px; /* Posição à direita */
+    width: 500px; /* Largura da imagem do smoothie */
+    height: 500px; /* Altura da imagem do smoothie */
+    border-radius: 50%; /* Faz a imagem parecer um bowl */
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo sutil para o "bowl" */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8); /* Começa menor */
+    opacity: 0; /* Começa invisível */
+    animation: zoomIn 1s forwards ease-out; /* Animação de entrada */
+    animation-delay: 0.8s;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra o contêiner */
+    border-radius: 50%; /* Mantém a imagem dentro do formato de bowl */
+    transition: transform 0.8s ease-in-out; /* Transição para a mudança de imagem */
+}
+
+.footer-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px 0;
+    z-index: 10;
+}
+
+.thumbnail {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail.active {
+    border-color: #fff; /* Borda branca para o ativo */
+    transform: scale(1.1); /* Pequeno zoom no ativo */
+}
+
+.thumbnail img {
+    width: 90%; /* Ajusta a imagem dentro da miniatura */
+    height: 90%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Estilo para o contêiner dos elementos flutuantes */
+.floating-elements-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Garante que os elementos desapareçam ao sair da tela */
+    pointer-events: none; /* Permite que cliques passem através do contêiner para elementos por baixo */
+    z-index: 5; /* Fica acima do conteúdo principal, mas abaixo do header/footer se necessário */
+}
+
+/* Estilo base para cada elemento flutuante */
+.floating-element {
+    position: absolute;
+    width: 80px; /* Tamanho base, pode variar */
+    height: 80px;
+    object-fit: contain; /* Garante que a imagem não seja cortada */
+    opacity: 0; /* Começa invisível */
+    /* animation-fill-mode: forwards;  Não é mais necessário aqui, o JS que garante o estado final */
+    animation-timing-function: ease-out; /* Suaviza o final da animação */
+}
+
+/* NOVO KEYFRAME: A fruta aparece, se posiciona e fica estática */
+@keyframes appearFromBottomRightAndPosition {
+    0% {
+        opacity: 0;
+        transform: translate(calc(var(--start-x) * 1vw), calc(var(--start-y) * 1vh)) scale(0.2) rotate(0deg);
+    }
+    50% { /* Meio da animação, já visível e maior, subindo */
+        opacity: 1;
+        transform: translate(calc(var(--mid-x) * 1vw), calc(var(--mid-y) * 1vh)) scale(1) rotate(45deg);
+    }
+    100% { /* Posição final e estática */
+        opacity: 1;
+        transform: translate(calc(var(--end-x) * 1vw), calc(var(--end-y) * 1vh)) scale(0.9) rotate(30deg);
+    }
+}
+
+
+/* Responsividade básica */
+@media (max-width: 1024px) {
+    .main-content {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .text-content {
+        max-width: 90%;
+        margin-bottom: 50px;
+        transform: translateX(0); /* Remove o slide para o centro */
+        animation: fadeIn 1s forwards ease-out; /* Nova animação para mobile */
+    }
+
+    .image-container {
+        position: static; /* Remove posicionamento absoluto */
+        margin-top: 30px;
+        width: 350px;
+        height: 350px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-menu ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .logo h1 {
+        font-size: 1.5em;
+    }
+
+    .nav-menu ul {
+        gap: 15px;
+        font-size: 0.9em;
+    }
+
+    .text-content h2 {
+        font-size: 2.5em;
+    }
+
+    .text-content h3 {
+        font-size: 1.2em;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+
+    .image-container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .footer-thumbnails {
+        gap: 15px;
+        padding: 20px 0;
+    }
+
+    .thumbnail {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-content h2 {
+        font-size: 2em;
+    }
+    .text-content h3 {
+        font-size: 1em;
+    }
+    .image-container {
+        width: 250px;
+        height: 250px;
+    }
+    .thumbnail {
+        width: 70px;
+        height: 70px;
+    }
+}
