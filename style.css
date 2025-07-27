@@ -35,7 +35,7 @@ body {
     position: relative; /* Necessário para posicionar elementos flutuantes e o chocolate-bg */
 }
 
-/* NOVO: Estilo para o contêiner da imagem de fundo da calda de chocolate */
+/* Estilo para o contêiner da imagem de fundo da calda de chocolate */
 .chocolate-bg {
     position: absolute;
     top: 0;
@@ -56,10 +56,9 @@ body {
     width: auto; /* A largura se ajusta proporcionalmente */
     object-fit: cover; /* Garante que a imagem cubra a área, cortando se necessário */
     object-position: left center; /* Alinha a imagem à esquerda */
-    /* Remove a transformação inicial daqui, pois o contêiner já lida com isso */
 }
 
-/* NOVO KEYFRAME para a calda de chocolate */
+/* KEYFRAME para a calda de chocolate */
 @keyframes fadeInSlideChocolate {
     0% {
         opacity: 0;
@@ -125,7 +124,7 @@ body {
     align-items: center;
     padding: 0 50px;
     position: relative;
-    overflow: hidden; /* Garante que a imagem do smoothie não vaze */
+    overflow: hidden; /* Garante que o conteúdo não vaze */
     z-index: 2; /* Garante que o main-content esteja acima do chocolate-bg */
 }
 
@@ -133,11 +132,10 @@ body {
     color: #fff;
     text-align: left;
     max-width: 45%;
-    z-index: 2; /* Garante que o texto fique acima da imagem de fundo */
-    transform: translateX(-50px); /* Ajuste de posição inicial */
-    opacity: 0; /* Começa invisível */
-    animation: fadeInSlide 1s forwards ease-out; /* Animação de entrada */
-    animation-delay: 0.5s;
+    z-index: 7; /* Aumentado z-index para garantir visibilidade */
+    opacity: 1; /* Garante que o texto esteja visível por padrão */
+    transform: translateX(0); /* Garante que o texto esteja na posição padrão por padrão */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Adiciona transição para futuras animações */
 }
 
 .text-content h2 {
@@ -147,7 +145,7 @@ body {
     font-weight: 700;
 }
 
-.text-content h3 {
+.text-content h3 { /* Mantido para caso queira usar, mas não está no HTML atual */
     font-size: 1.5em;
     font-weight: 400;
     margin-bottom: 30px;
@@ -169,88 +167,94 @@ body {
     opacity: 0.9;
 }
 
-.image-container {
+/* Estilo para a área de exibição da imagem principal (o CÍRCULO de destaque) */
+.image-display-area {
     position: absolute;
     right: 50px; /* Posição à direita */
-    width: 500px; /* Largura da imagem do smoothie */
-    height: 500px; /* Altura da imagem do smoothie */
-    border-radius: 50%; /* Faz a imagem parecer um bowl */
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.2); /* Fundo sutil para o "bowl" */
-    display: flex;
+    width: 600px; /* Largura do círculo */
+    height: 600px; /* Altura do círculo */
+    border-radius: 50%; /* Torna-o um círculo */
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo sutil para o círculo */
+    display: flex; /* Para centralizar a imagem dentro */
     justify-content: center;
     align-items: center;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    transform: scale(0.8); /* Começa menor */
+    overflow: hidden; /* Garante que a imagem não "vaze" do círculo */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade ao círculo */
+    
+    opacity: 1; /* Garante que o círculo esteja visível por padrão */
+    transform: scale(1); /* Garante que o círculo esteja no tamanho padrão por padrão */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição para futuras animações do círculo */
+    z-index: 6; /* Acima do chocolate-bg */
+}
+
+/* Estilo para a IMAGEM PRINCIPAL dentro do círculo */
+.image-display-area img {
+    width: 90%; /* A imagem um pouco menor que o círculo */
+    height: 90%; /* A imagem um pouco menor que o círculo */
+    object-fit: contain; /* Garante que a imagem se ajuste dentro da área sem cortar */
+    border-radius: 0; /* Garante que a imagem não seja forçada a ser circular, se ela não for */
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.3)); /* Sombra para dar profundidade à imagem */
+
+    /* Animação inicial de surgimento da imagem principal (DA DIREITA PARA A ESQUERDA E FADE-IN) */
     opacity: 0; /* Começa invisível */
-    animation: zoomIn 1s forwards ease-out; /* Animação de entrada */
-    animation-delay: 0.8s;
+    transform: translateX(150%) scale(0.8); /* Começa BEM à direita e menor (150% do próprio width) */
+    animation: slideInMainImage 1s forwards ease-out; /* Aplica a animação */
+    animation-delay: 1s; /* Pequeno atraso para aparecer após o carregamento inicial da página */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Para trocas posteriores via JS */
 }
 
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Garante que a imagem cubra o contêiner */
-    border-radius: 50%; /* Mantém a imagem dentro do formato de bowl */
-    transition: transform 0.8s ease-in-out; /* Transição para a mudança de imagem */
+/* NOVO KEYFRAME: Animação para a imagem principal (prato com comida) */
+@keyframes slideInMainImage {
+    0% {
+        opacity: 0;
+        transform: translateX(150%) scale(0.8); /* Começa fora da tela à direita e menor */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(0.9); /* Termina visível, centralizado e um pouco menor que o círculo */
+    }
 }
 
-.footer-thumbnails {
+
+/* Estilo para o rodapé com ícones */
+.footer-icons {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 40px; /* Mais espaçamento entre os ícones */
     padding: 30px 0;
     z-index: 10;
 }
 
-.thumbnail {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    transition: border-color 0.3s ease, transform 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil */
+/* Estilo para cada item de produto com ícone */
+.product-icon {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Ícone e texto em coluna */
     align-items: center;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.thumbnail.active {
-    border-color: #fff; /* Borda branca para o ativo */
-    transform: scale(1.1); /* Pequeno zoom no ativo */
+.product-icon i {
+    font-size: 3em; /* Tamanho do ícone */
+    margin-bottom: 5px; /* Espaço entre ícone e texto */
 }
 
-.thumbnail img {
-    width: 90%; /* Ajusta a imagem dentro da miniatura */
-    height: 90%;
-    object-fit: cover;
-    border-radius: 50%;
+.product-icon span {
+    font-size: 1em;
+    font-weight: 600;
 }
 
-/* Keyframe Animations */
-@keyframes fadeInSlide {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.product-icon.active {
+    color: rgba(255, 255, 255, 0.7); /* Cor mais clara para o ativo */
+    transform: translateY(-5px); /* Leve elevação no ativo */
 }
 
-@keyframes zoomIn {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.product-icon:hover {
+    color: rgba(255, 255, 255, 0.85); /* Efeito de hover */
+    transform: translateY(-3px);
 }
+
 
 /* Estilo para o contêiner dos elementos flutuantes */
 .floating-elements-container {
@@ -271,17 +275,17 @@ body {
     height: 80px;
     object-fit: contain; /* Garante que a imagem não seja cortada */
     opacity: 0; /* Começa invisível */
-    /* animation-fill-mode: forwards;  Não é mais necessário aqui, o JS que garante o estado final */
     animation-timing-function: ease-out; /* Suaviza o final da animação */
+    animation-fill-mode: forwards; /* Garante que o estado final da animação seja mantido */
 }
 
-/* KEYFRAME para as frutas que aparecem e ficam estáticas */
+/* KEYFRAME para as frutas que aparecem e ficam estáticas (surgem do canto inferior direito e sobem) */
 @keyframes appearFromBottomRightAndPosition {
     0% {
         opacity: 0;
         transform: translate(calc(var(--start-x) * 1vw), calc(var(--start-y) * 1vh)) scale(0.2) rotate(0deg);
     }
-    50% { /* Meio da animação, já visível e maior, subindo */
+    50% { /* Meio da animação, já visível e maior, subindo mais */
         opacity: 1;
         transform: translate(calc(var(--mid-x) * 1vw), calc(var(--mid-y) * 1vh)) scale(1) rotate(45deg);
     }
@@ -297,7 +301,7 @@ body {
     .main-content {
         flex-direction: column;
         text-align: center;
-        padding-top: 50px;
+        padding: 50px 20px; /* Ajuste o padding para telas menores */
     }
 
     .text-content {
@@ -307,16 +311,29 @@ body {
         animation: fadeIn 1s forwards ease-out; /* Nova animação para mobile */
     }
 
-    .image-container {
+    /* Ajustes para a imagem principal em mobile */
+    .image-display-area {
         position: static; /* Remove posicionamento absoluto */
         margin-top: 30px;
         width: 350px;
         height: 350px;
+        right: auto; /* Remove o right */
     }
+
+    /* A imagem dentro do círculo em mobile */
+    .image-display-area img {
+        width: 90%;
+        height: 90%;
+        transform: translateX(0) scale(0.9); /* Garante que ela esteja no lugar certo em mobile */
+        opacity: 1;
+        animation: none; /* Desativa a animação de entrada em mobile para simplificar */
+    }
+
 
     .header {
         flex-direction: column;
         gap: 20px;
+        padding: 15px 20px; /* Ajuste o padding do header */
     }
 
     .nav-menu ul {
@@ -356,7 +373,7 @@ body {
         font-size: 2.5em;
     }
 
-    .text-content h3 {
+    .text-content h3 { /* Mantido para caso queira usar, mas não está no HTML atual */
         font-size: 1.2em;
     }
 
@@ -365,19 +382,25 @@ body {
         font-size: 1em;
     }
 
-    .image-container {
+    .image-display-area { /* Usar a nova classe */
         width: 300px;
         height: 300px;
     }
 
-    .footer-thumbnails {
+    .footer-icons { /* Usar a nova classe */
         gap: 15px;
         padding: 20px 0;
     }
 
-    .thumbnail {
-        width: 90px;
-        height: 90px;
+    .product-icon { /* Usar a nova classe */
+        /* width: 90px; */ /* Removido para o ícone se auto-ajustar */
+        /* height: 90px; */
+    }
+    .product-icon i {
+        font-size: 2.5em; /* Reduz o tamanho do ícone */
+    }
+    .product-icon span {
+        font-size: 0.9em; /* Reduz o tamanho do texto */
     }
 }
 
@@ -385,16 +408,18 @@ body {
     .text-content h2 {
         font-size: 2em;
     }
-    .text-content h3 {
+    .text-content h3 { /* Mantido para caso queira usar, mas não está no HTML atual */
         font-size: 1em;
     }
-    .image-container {
+    .image-display-area {
         width: 250px;
         height: 250px;
     }
-    .thumbnail {
-        width: 70px;
-        height: 70px;
+    .product-icon i {
+        font-size: 2em;
+    }
+    .product-icon span {
+        font-size: 0.8em;
     }
     .chocolate-bg {
         height: 40vh; /* Ainda mais baixo em telas muito pequenas */
