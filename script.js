@@ -2,7 +2,7 @@
 const smoothies = {
     strawberry: {
         // MUDE ESTAS URLS para suas imagens locais reais. Ex: 'data/Images/smoothie_morango.png'
-        image: 'data/Images/sfsdfdf.png', 
+        image: 'https://images.unsplash.com/photo-1546069901-dcd1307b9982?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
         color: '#f7a072' 
     },
     banana: {
@@ -22,35 +22,49 @@ const smoothies = {
 // Objeto para armazenar as imagens das frutas que flutuam (AGORA COM 4 IMAGENS DIFERENTES PARA CADA TIPO)
 const floatingFruitImages = {
     strawberry: [
-        'data/Images/frutas/morango.png', // Substitua por suas URLs reais
-        'data/Images/frutas/morango.png',
-        'https://via.placeholder.com/80?text=Straw3',
-        'https://via.placeholder.com/80?text=Straw4'
+        'https://images.unsplash.com/photo-1587840176316-24155b5d84d1?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+        'https://images.unsplash.com/photo-1546069901-dcd1307b9982?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1546069901-dcd1307b9982?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1587840176316-24155b5d84d1?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     ],
     cherry: [
-        'https://via.placeholder.com/80?text=Cherry1', // Substitua por suas URLs reais
-        'https://via.placeholder.com/80?text=Cherry2',
-        'https://via.placeholder.com/80?text=Cherry3',
-        'https://via.placeholder.com/80?text=Cherry4'
+        'https://images.unsplash.com/photo-1548486981-d9a2a7f8b9e1?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+        'https://images.unsplash.com/photo-1601633513360-153c301389e0?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1548486981-d9a2a7f8b9e1?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1601633513360-153c301389e0?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     ],
+    // Adicione URLs reais para banana_slice e kiwi_slice aqui
     banana_slice: [ 
-        'https://via.placeholder.com/80?text=BananaS1', // Substitua por suas URLs reais
-        'https://via.placeholder.com/80?text=BananaS2',
-        'https://via.placeholder.com/80?text=BananaS3',
-        'https://via.placeholder.com/80?text=BananaS4'
+        'https://images.unsplash.com/photo-1571771019793-18967962453e?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+        'https://images.unsplash.com/photo-1621262102551-7872652b4144?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1571771019793-18967962453e?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1621262102551-7872652b4144?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     ],
     kiwi_slice: [ 
-        'https://via.placeholder.com/80?text=KiwiS1', // Substitua por suas URLs reais
-        'https://via.placeholder.com/80?text=KiwiS2',
-        'https://via.placeholder.com/80?text=KiwiS3',
-        'https://via.placeholder.com/80?text=KiwiS4'
+        'https://images.unsplash.com/photo-1549449673-c62589574486?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+        'https://images.unsplash.com/photo-1601633513360-153c301389e0?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1549449673-c62589574486?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1601633513360-153c301389e0?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    ],
+    // Adicione aqui também os tipos para chocolate que você mencionou
+    chocolate_piece: [
+        'https://images.unsplash.com/photo-1585802119933-2a3b0b3b3a3b?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+        'https://images.unsplash.com/photo-1585802119933-2a3b0b3b3a3b?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1585802119933-2a3b0b3b3a3b?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1585802119933-2a3b0b3b3a3b?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    ],
+    chocolate_shave: [
+        'https://images.unsplash.com/photo-1621262102551-7872652b4144?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1621262102551-7872652b4144?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1621262102551-7872652b4144?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        'https://images.unsplash.com/photo-1621262102551-7872652b4144?q=80&w=100&h=100&fit=crop&auto=format&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
     ]
 };
 
 
 // Seleciona os elementos HTML que vamos manipular
 const mainSmoothieImage = document.getElementById('main-smoothie-image'); 
-const productIcons = document.querySelectorAll('.product-icon'); 
+const navItems = document.querySelectorAll('.nav-item'); // Seletor atualizado para os itens do menu lateral
 const body = document.body;
 const ctaButton = document.querySelector('.cta-button');
 const floatingElementsContainer = document.querySelector('.floating-elements-container');
@@ -74,12 +88,13 @@ function createFloatingElement(imageSrc, animationDuration, delay, imageContaine
     
     // Ponto de início: Abaixo e à direita da imageContainerRect para surgir de "baixo"
     // Usamos window.innerHeight para garantir que a fruta venha de fora da tela por baixo
-    const startX = getRandomNumber(imageContainerRect.left, imageContainerRect.right);
+    // Ajuste esses valores para controlar de onde exatamente eles surgem
+    const startX = getRandomNumber(imageContainerRect.left + imageContainerRect.width * 0.7, imageContainerRect.right + imageContainerRect.width * 0.3); // Mais para a direita do círculo
     const startY = getRandomNumber(window.innerHeight + 50, window.innerHeight + 150); // Começa bem abaixo da tela
 
-    // Ponto intermediário: Um pouco acima da imageContainerRect, no caminho
-    const midX = getRandomNumber(imageContainerRect.left - 50, imageContainerRect.right + 50);
-    const midY = getRandomNumber(imageContainerRect.top + imageContainerRect.height * 0.5, imageContainerRect.bottom - imageContainerRect.height * 0.1); // No meio ou mais para cima do círculo
+    // Ponto intermediário: Um pouco acima da imageContainerRect, no caminho, para dar um arco
+    const midX = getRandomNumber(imageContainerRect.left + imageContainerRect.width * 0.3, imageContainerRect.right + imageContainerRect.width * 0.1); 
+    const midY = getRandomNumber(imageContainerRect.top + imageContainerRect.height * 0.1, imageContainerRect.bottom * 0.8); 
 
     // Ponto final: Dentro ou perto da imageContainerRect
     const endX = getRandomNumber(imageContainerRect.left + imageContainerRect.width * 0.1, imageContainerRect.right - imageContainerRect.width * 0.1);
@@ -105,9 +120,6 @@ function createFloatingElement(imageSrc, animationDuration, delay, imageContaine
     element.style.animation = `appearFromBottomRightAndPosition ${animationDuration}s ${delay}s forwards ease-in-out`;
     
     floatingElementsContainer.appendChild(element);
-
-    // IMPORTANTE: NÃO REMOVEMOS O ELEMENTO AQUI. Ele ficará estático.
-    // A remoção será feita pela função generateFloatingElements antes de criar os novos.
 }
 
 // Função para gerar vários elementos flutuantes
@@ -146,17 +158,17 @@ function updateSmoothieDisplay(smoothieId) {
 
     // Verifica se os dados do smoothie existem
     if (smoothieData) {
-        // Animação de transição para a imagem principal (agora da direita para esquerda na troca)
+        // Animação de transição para a imagem principal (fade-out e scale-down, depois fade-in e scale-up)
+        // Isso é para as TROCAS entre smoothies, não para o carregamento inicial.
         mainSmoothieImage.style.transition = 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out';
-        mainSmoothieImage.style.opacity = '0'; // Esconde para a troca
-        // Volta para a posição inicial para a animação de entrada (direita para esquerda)
-        mainSmoothieImage.style.transform = 'translateX(150%) scale(0.8)'; 
-        mainSmoothieImage.style.animation = 'none'; // Desativa a animação CSS inicial para que a transição JS funcione
+        mainSmoothieImage.style.opacity = '0'; // Esconde a imagem atual
+        mainSmoothieImage.style.transform = 'translateX(150%) scale(0.8)'; // Move para a direita para animar entrando
 
         setTimeout(() => {
             mainSmoothieImage.src = smoothieData.image; // Define a nova imagem
             mainSmoothieImage.style.opacity = '1'; // Mostra a nova imagem
-            mainSmoothieImage.style.transform = 'translateX(0) scale(0.9)'; // Volta para a posição final da animação CSS inicial (visível, um pouco menor)
+            mainSmoothieImage.style.transform = 'translateX(0) scale(0.9)'; // Volta para a posição final
+            mainSmoothieImage.style.animation = 'none'; // Garante que a animação CSS inicial não interfira
         }, 300); // Tempo para o fade-out/scale-down antes de trocar e reaparecer
 
 
@@ -166,33 +178,33 @@ function updateSmoothieDisplay(smoothieId) {
         // Altera a cor do texto do botão para a nova cor de fundo
         ctaButton.style.color = smoothieData.color;
 
-        // Atualiza a classe 'active' dos ícones de produto (thumbnails)
-        productIcons.forEach(icon => {
-            if (icon.dataset.smoothieId === smoothieId) {
-                icon.classList.add('active');
+        // Atualiza a classe 'active' dos itens do menu lateral
+        navItems.forEach(item => {
+            if (item.dataset.smoothieId === smoothieId) {
+                item.classList.add('active');
             } else {
-                icon.classList.remove('active');
+                item.classList.remove('active');
             }
         });
 
         // Chama a função para gerar os elementos flutuantes específicos
         // para o smoothie atual. Eles aparecerão e ficarão estáticos.
         if (smoothieId === 'strawberry' || smoothieId === 'berries') {
-            generateFloatingElements(['strawberry', 'cherry'], 3); 
+            generateFloatingElements(['strawberry', 'cherry', 'chocolate_piece', 'chocolate_shave'], 3); 
         } else if (smoothieId === 'banana') {
-            generateFloatingElements(['banana_slice', 'cherry'], 3); 
+            generateFloatingElements(['banana_slice', 'cherry', 'chocolate_piece', 'chocolate_shave'], 3); 
         } else if (smoothieId === 'kiwi') {
-            generateFloatingElements(['kiwi_slice', 'strawberry'], 3); 
+            generateFloatingElements(['kiwi_slice', 'strawberry', 'chocolate_piece', 'chocolate_shave'], 3); 
         } else {
-            generateFloatingElements('strawberry', 2); 
+            generateFloatingElements(['strawberry', 'chocolate_piece'], 2); 
         }
     }
 }
 
-// Adiciona um ouvinte de evento de clique para cada ícone de produto (thumbnail)
-productIcons.forEach(icon => {
-    icon.addEventListener('click', () => {
-        const smoothieId = icon.dataset.smoothieId; 
+// Adiciona um ouvinte de evento de clique para cada item do menu lateral
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const smoothieId = item.dataset.smoothieId; 
         updateSmoothieDisplay(smoothieId); 
     });
 });
@@ -205,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (initialSmoothieData) {
         mainSmoothieImage.src = initialSmoothieData.image; // Define a imagem inicial
         
-        // APLICAR A ANIMAÇÃO INICIAL DA IMAGEM PRINCIPAL AQUI NO JS, JÁ QUE REMOVEMOS DO CSS
         // Garante que ela começa invisível e fora da tela para a animação CSS
         mainSmoothieImage.style.opacity = '0';
         mainSmoothieImage.style.transform = 'translateX(150%) scale(0.8)'; // Posição inicial para a animação
@@ -217,26 +228,25 @@ document.addEventListener('DOMContentLoaded', () => {
         body.style.setProperty('--current-bg-color', initialSmoothieData.color); // Define a cor de fundo inicial
         ctaButton.style.color = initialSmoothieData.color; // Define a cor do botão inicial
         
-        // Ativa a miniatura inicial
-        productIcons.forEach(icon => {
-            if (icon.dataset.smoothieId === initialSmoothieId) {
-                icon.classList.add('active');
+        // Ativa o item inicial do menu lateral
+        navItems.forEach(item => {
+            if (item.dataset.smoothieId === initialSmoothieId) {
+                item.classList.add('active');
             }
         });
 
         // Gera as frutas flutuantes para o estado inicial
         if (initialSmoothieId === 'strawberry' || initialSmoothieId === 'berries') {
-            generateFloatingElements(['strawberry', 'cherry'], 3);
+            generateFloatingElements(['strawberry', 'cherry', 'chocolate_piece', 'chocolate_shave'], 3); 
         } else {
-            generateFloatingElements('strawberry', 2); 
+            generateFloatingElements(['strawberry', 'chocolate_piece'], 2); 
         }
     }
 
     // Garante que o texto esteja visível e no lugar na carga inicial
     textContentArea.style.opacity = '1';
     textContentArea.style.transform = 'none'; 
-    // A imageDisplayArea já deve estar visível via CSS padrão, sem animação de entrada direta nela.
-    // A animação é na IMAGEM DENTRO dela.
+    // A imageDisplayArea (o círculo) já deve estar visível via CSS padrão, sem animação de entrada direta nela.
     imageDisplayArea.style.opacity = '1';
     imageDisplayArea.style.transform = 'none'; 
 });

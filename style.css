@@ -94,18 +94,14 @@ body {
     object-fit: cover;
 }
 
-.logo h1 {
-    font-size: 1.8em;
-    font-weight: 700;
-}
-
-.nav-menu ul {
+/* Estilo para o menu superior direito */
+.nav-menu-top ul {
     list-style: none;
     display: flex;
     gap: 30px;
 }
 
-.nav-menu ul li a {
+.nav-menu-top ul li a {
     text-decoration: none;
     color: #fff;
     font-weight: 600;
@@ -113,36 +109,101 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav-menu ul li a:hover {
+.nav-menu-top ul li a:hover {
     color: rgba(255, 255, 255, 0.7);
 }
+
+/* NOVO: Estilo para o menu lateral esquerdo */
+.nav-menu-left {
+    position: fixed; /* Fixo na tela */
+    left: 20px; /* Posição à esquerda */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%);
+    z-index: 15; /* Acima de quase tudo */
+    background: transparent; /* Fundo transparente */
+    padding: 20px 0;
+}
+
+.nav-menu-left ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column; /* Itens em coluna */
+    gap: 25px; /* Espaçamento entre os itens */
+}
+
+.nav-menu-left .nav-item {
+    display: flex;
+    justify-content: center; /* Centraliza o ícone */
+    align-items: center;
+    width: 50px; /* Largura do item */
+    height: 50px; /* Altura do item */
+    border-radius: 50%; /* Transforma em círculo */
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo sutil */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Borda sutil */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-menu-left .nav-item i {
+    font-size: 1.8em; /* Tamanho do ícone */
+}
+
+.nav-menu-left .nav-item.active {
+    background-color: rgba(255, 255, 255, 0.3); /* Fundo mais visível para ativo */
+    border-color: #fff; /* Borda branca para ativo */
+    transform: scale(1.1); /* Pequeno zoom no ativo */
+}
+
+.nav-menu-left .nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Efeito de hover */
+    transform: scale(1.05);
+}
+
 
 .main-content {
     flex-grow: 1; /* Faz com que o conteúdo principal ocupe o espaço restante */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 50px;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente todo o main-content */
+    padding: 0 50px; /* Padding padrão */
     position: relative;
     overflow: hidden; /* Garante que o conteúdo não vaze */
     z-index: 2; /* Garante que o main-content esteja acima do chocolate-bg */
 }
 
+/* Ajuste o padding-left do main-content para não ser sobreposto pelo menu lateral */
+body > .main-content {
+    padding-left: 120px; /* Deixe espaço para o menu lateral */
+    padding-right: 50px; /* Mantém o padding da direita */
+}
+
+/* Ajustes específicos para o text-content para corresponder à imagem */
 .text-content {
     color: #fff;
-    text-align: left;
-    max-width: 45%;
+    text-align: left; /* Mantém alinhamento à esquerda para o bloco */
+    max-width: 45%; /* Mantém a largura máxima */
     z-index: 7; /* Aumentado z-index para garantir visibilidade */
-    opacity: 1; /* Garante que o texto esteja visível por padrão */
-    transform: translateX(0); /* Garante que o texto esteja na posição padrão por padrão */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Adiciona transição para futuras animações */
+    
+    /* Remover transform e opacity padrão para o JS controlar a animação inicial */
+    opacity: 1;
+    transform: translateX(0);
+
+    /* Adicionar flexbox para alinhar o h2 e o botão como na imagem */
+    display: flex;
+    flex-direction: column; /* Itens em coluna */
+    justify-content: center; /* Centraliza verticalmente no espaço disponível */
+    align-items: flex-start; /* Alinha o conteúdo à esquerda dentro do text-content */
+    height: 100%; /* Permite que o flexbox centralize verticalmente */
+    padding-bottom: 50px; /* Ajuste para centralizar o bloco com o botão */
 }
 
 .text-content h2 {
     font-size: 3.5em;
     margin-bottom: 10px;
-    line-height: 1.1;
+    line-height: 1.1; /* Ajusta a altura da linha */
     font-weight: 700;
+    text-align: left; /* Garante que o texto de h2 em si não seja centralizado */
 }
 
 .text-content h3 { /* Mantido para caso queira usar, mas não está no HTML atual */
@@ -184,7 +245,7 @@ body {
     opacity: 1; /* Garante que o círculo esteja visível por padrão */
     transform: scale(1); /* Garante que o círculo esteja no tamanho padrão por padrão */
     transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição para futuras animações do círculo */
-    z-index: 6; /* Acima do chocolate-bg */
+    z-index: 6; /* Acima do chocolate-bg e elementos flutuantes */
 }
 
 /* Estilo para a IMAGEM PRINCIPAL dentro do círculo */
@@ -203,7 +264,7 @@ body {
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Para trocas posteriores via JS */
 }
 
-/* NOVO KEYFRAME: Animação para a imagem principal (prato com comida) */
+/* KEYFRAME: Animação para a imagem principal (prato com comida) - DA DIREITA PARA A ESQUERDA */
 @keyframes slideInMainImage {
     0% {
         opacity: 0;
@@ -216,47 +277,7 @@ body {
 }
 
 
-/* Estilo para o rodapé com ícones */
-.footer-icons {
-    display: flex;
-    justify-content: center;
-    gap: 40px; /* Mais espaçamento entre os ícones */
-    padding: 30px 0;
-    z-index: 10;
-}
-
-/* Estilo para cada item de produto com ícone */
-.product-icon {
-    display: flex;
-    flex-direction: column; /* Ícone e texto em coluna */
-    align-items: center;
-    color: #fff;
-    cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.product-icon i {
-    font-size: 3em; /* Tamanho do ícone */
-    margin-bottom: 5px; /* Espaço entre ícone e texto */
-}
-
-.product-icon span {
-    font-size: 1em;
-    font-weight: 600;
-}
-
-.product-icon.active {
-    color: rgba(255, 255, 255, 0.7); /* Cor mais clara para o ativo */
-    transform: translateY(-5px); /* Leve elevação no ativo */
-}
-
-.product-icon:hover {
-    color: rgba(255, 255, 255, 0.85); /* Efeito de hover */
-    transform: translateY(-3px);
-}
-
-
-/* Estilo para o contêiner dos elementos flutuantes */
+/* Estilo para o contêiner dos elementos flutuantes (chocolates e frutas) */
 .floating-elements-container {
     position: absolute;
     top: 0;
@@ -265,7 +286,7 @@ body {
     height: 100%;
     overflow: hidden; /* Garante que os elementos desapareçam ao sair da tela */
     pointer-events: none; /* Permite que cliques passem através do contêiner para elementos por baixo */
-    z-index: 5; /* Fica acima do conteúdo principal, mas abaixo do header/footer se necessário */
+    z-index: 5; /* Fica acima do chocolate-bg, mas abaixo do conteúdo principal */
 }
 
 /* Estilo base para cada elemento flutuante */
@@ -279,25 +300,65 @@ body {
     animation-fill-mode: forwards; /* Garante que o estado final da animação seja mantido */
 }
 
-/* KEYFRAME para as frutas que aparecem e ficam estáticas (surgem do canto inferior direito e sobem) */
+/* KEYFRAME para as frutas que aparecem e ficam estáticas (AGORA VEM DO FUNDO PARA CIMA) */
 @keyframes appearFromBottomRightAndPosition {
     0% {
         opacity: 0;
+        /* Começa invisível, abaixo da tela, próximo à direita da image-display-area */
         transform: translate(calc(var(--start-x) * 1vw), calc(var(--start-y) * 1vh)) scale(0.2) rotate(0deg);
     }
-    50% { /* Meio da animação, já visível e maior, subindo mais */
+    50% { /* Meio da animação, visível e subindo mais */
         opacity: 1;
         transform: translate(calc(var(--mid-x) * 1vw), calc(var(--mid-y) * 1vh)) scale(1) rotate(45deg);
     }
-    100% { /* Posição final e estática */
+    100% { /* Posição final estática */
         opacity: 1;
         transform: translate(calc(var(--end-x) * 1vw), calc(var(--end-y) * 1vh)) scale(0.9) rotate(30deg);
     }
 }
 
 
-/* Responsividade básica */
+/* NOVO: Estilo para o rodapé principal */
+.main-footer {
+    width: 100%;
+    padding: 15px 50px;
+    background-color: rgba(0, 0, 0, 0.3); /* Fundo levemente escuro */
+    color: #fff;
+    font-size: 0.9em;
+    text-align: center;
+    z-index: 10; /* Garante que fique acima de outros elementos */
+    position: relative; /* Para que o z-index funcione */
+    margin-top: auto; /* Empurra o footer para baixo */
+}
+
+.main-footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Largura máxima para o conteúdo do rodapé */
+    margin: 0 auto;
+}
+
+.main-footer .social-links a {
+    color: #fff;
+    margin-left: 15px;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.main-footer .social-links a:hover {
+    color: var(--current-bg-color); /* Muda a cor ao passar o mouse */
+}
+
+
+/* --- Media Queries (Responsividade) --- */
+
 @media (max-width: 1024px) {
+    /* Ajuste o padding-left do body principal para não ser sobreposto pelo menu lateral */
+    body > .main-content {
+        padding-left: 100px; /* Menos espaço para o menu lateral em telas menores */
+    }
+
     .main-content {
         flex-direction: column;
         text-align: center;
@@ -311,7 +372,6 @@ body {
         animation: fadeIn 1s forwards ease-out; /* Nova animação para mobile */
     }
 
-    /* Ajustes para a imagem principal em mobile */
     .image-display-area {
         position: static; /* Remove posicionamento absoluto */
         margin-top: 30px;
@@ -320,7 +380,6 @@ body {
         right: auto; /* Remove o right */
     }
 
-    /* A imagem dentro do círculo em mobile */
     .image-display-area img {
         width: 90%;
         height: 90%;
@@ -336,10 +395,23 @@ body {
         padding: 15px 20px; /* Ajuste o padding do header */
     }
 
-    .nav-menu ul {
+    .nav-menu-top ul { /* Ajuste para o menu top em mobile */
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    .nav-menu-left { /* Ajuste para o menu lateral em mobile */
+        left: 10px;
+        padding: 10px 0;
+    }
+    .nav-menu-left .nav-item {
+        width: 45px;
+        height: 45px;
+    }
+    .nav-menu-left .nav-item i {
+        font-size: 1.5em;
+    }
+
 
     @keyframes fadeIn {
         from { opacity: 0; }
@@ -353,9 +425,18 @@ body {
         object-position: center bottom; /* Ajusta o posicionamento da calda */
         height: 50vh; /* Ajuste a altura para telas menores */
     }
+
+    .main-footer .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 @media (max-width: 768px) {
+    body > .main-content {
+        padding-left: 80px; /* Menos espaço para o menu lateral em telas menores */
+    }
+
     .header {
         padding: 15px 20px;
     }
@@ -364,7 +445,7 @@ body {
         font-size: 1.5em;
     }
 
-    .nav-menu ul {
+    .nav-menu-top ul {
         gap: 15px;
         font-size: 0.9em;
     }
@@ -373,7 +454,7 @@ body {
         font-size: 2.5em;
     }
 
-    .text-content h3 { /* Mantido para caso queira usar, mas não está no HTML atual */
+    .text-content h3 {
         font-size: 1.2em;
     }
 
@@ -382,44 +463,44 @@ body {
         font-size: 1em;
     }
 
-    .image-display-area { /* Usar a nova classe */
+    .image-display-area {
         width: 300px;
         height: 300px;
     }
 
-    .footer-icons { /* Usar a nova classe */
-        gap: 15px;
-        padding: 20px 0;
+    .nav-menu-left {
+        left: 5px;
     }
-
-    .product-icon { /* Usar a nova classe */
-        /* width: 90px; */ /* Removido para o ícone se auto-ajustar */
-        /* height: 90px; */
+    .nav-menu-left .nav-item {
+        width: 40px;
+        height: 40px;
     }
-    .product-icon i {
-        font-size: 2.5em; /* Reduz o tamanho do ícone */
-    }
-    .product-icon span {
-        font-size: 0.9em; /* Reduz o tamanho do texto */
+    .nav-menu-left .nav-item i {
+        font-size: 1.3em;
     }
 }
 
 @media (max-width: 480px) {
+    body > .main-content {
+        padding-left: 60px; /* Menos espaço para o menu lateral em telas muito pequenas */
+    }
+
     .text-content h2 {
         font-size: 2em;
     }
-    .text-content h3 { /* Mantido para caso queira usar, mas não está no HTML atual */
+    .text-content h3 {
         font-size: 1em;
     }
     .image-display-area {
         width: 250px;
         height: 250px;
     }
-    .product-icon i {
-        font-size: 2em;
+    .nav-menu-left .nav-item {
+        width: 35px;
+        height: 35px;
     }
-    .product-icon span {
-        font-size: 0.8em;
+    .nav-menu-left .nav-item i {
+        font-size: 1.1em;
     }
     .chocolate-bg {
         height: 40vh; /* Ainda mais baixo em telas muito pequenas */
